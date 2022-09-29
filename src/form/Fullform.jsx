@@ -1,20 +1,33 @@
 import React from "react";
 import { useState } from "react";
+import { Grid } from "@mui/material";
 import Receptor from "./form-sections/Receptor";
 
 
 const Fullform = () =>{
 
-    const[data, setData] = useState({});
+    const[receptor, setReceptor] = useState({});
+    const[documento, setDocumento] = useState({});
 
     const onClick = () =>{
-        console.log(data)
+        //setData([...data,{info:""}])
+        console.log(receptor)
+        console.log(documento)
     }
 
     return(
         <div>
+
             <form action="">
-             <Receptor onChange={setData} />
+             <Grid container spacing={2}>
+                
+                <Grid item md={6}>
+                <h1>receptor</h1>
+                    <Receptor onChange={setReceptor} />
+                </Grid>
+             </Grid>
+             
+             
              <button type="button" onClick={onClick}>
                 Save
             </button>     
