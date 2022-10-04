@@ -1,15 +1,13 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import {Box, Grid, TextField} from "@mui/material"
+import { React, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Grid } from "@mui/material"
+import CustomInputText from "../form-input/CustomInputText";
+
 
 const Documento = ({onChange}) => {
 
-    const[docu, setDocu] = useState("")
-    const[docu2, setDocu2] = useState("")
-    
-    const {errors,touched,getFieldProps} = useFormik({
+    const {values,errors,touched,handleBlur, handleChange} = useFormik({
         initialValues:{
             RazonSocial:"",
             email:"",
@@ -21,27 +19,15 @@ const Documento = ({onChange}) => {
 
     useEffect(()=>{
        onChange({Documento:{
-        docu,
-        docu2
+        values
        }     
        });
-    },[docu, docu2]);
+    },[values]);
 
 
     return(
-      
-         <Grid container>
-            <Grid item>
-                <TextField />
-            </Grid>
-
-            <Grid item>
-                <TextField />
-            </Grid>
-
-            <Grid item>
-                <TextField />
-            </Grid>
+         <Grid container spacing={2}>
+            
          </Grid>
     );
 }
