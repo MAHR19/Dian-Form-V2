@@ -1,12 +1,14 @@
 import { React, useState } from 'react';
 import { Autocomplete ,TextField, Grid } from '@mui/material';
+import { useEffect } from 'react';
 
 
 const AutocompleteInput = (props) =>{
 
+   //let selected = ''
    let url = 'http://127.0.0.1:8000/catalogos/'+props.catalogo+'?name='; //API url
    
-   const [item, setItem] = useState(''); 
+   //const [items, setItems] = useState([]); 
    const [data, setData] = useState([]); 
 
    const handleAPIrequest = async (query_param) => {
@@ -17,7 +19,7 @@ const AutocompleteInput = (props) =>{
         .then( (api_fetch)=>{
             if(query_param === '')
             {
-                setData();
+                setData([]);
             }else{
                 setData(api_fetch);
             }
@@ -25,21 +27,28 @@ const AutocompleteInput = (props) =>{
         url = url_aux;  
    }
 
+
+   useEffect(()=>{
+        
+   });
+
+
     return(
         <Grid item xs={props.xs} sm={props.sm} md={props.md}>
              <Autocomplete
                 freeSolo
                 id="list"
                 size='small'
+                autoComplete = {true}
                 onChange={(event, value)=>{
-                   let selected = data.find(element => element.name === value);//Find the value in list 
-                   props.setFieldValue(props.name, selected)  
+                   console.log(value)
+                   props.setFieldValue(props.name, data.find(element => element.name === value));  
                 }}
-                onInputChange={(event)=>{handleAPIrequest(event.target.value); }}
+                onInputChange={(event)=>{handleAPIrequest(event.target.value); console.log(event.target.value); }}
                 options={data.map((option)=> option.name)}
                 renderInput={(params) => 
                 <TextField error={props.haserror} helperText={props.errorText} color="success" 
-                name={props.name} {...params} label={props.label} 
+                name={props.name} {...params} onBlur={props.onBlur} label={props.label} 
                     />}
                 />       
         </Grid>

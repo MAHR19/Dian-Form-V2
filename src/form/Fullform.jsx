@@ -8,7 +8,7 @@ import Receptor from "./form-sections/Receptor";
 
 const Fullform = () =>{
 
-    const[receptor, setReceptor] = useState({});
+    const[receptor, setReceptor] = useState([{}]);
     //const[documento, setDocumento] = useState({});
 
     const onClick = () =>{
@@ -23,7 +23,7 @@ const Fullform = () =>{
             <form action="">
 
              <Grid container spacing={2}>
-                <Grid item md={6}>
+                <Grid item xs={12} sm={10} md={6}>
                 <Typography variant="h5">Receptor</Typography>
                     <Receptor onChange={setReceptor} />
                 </Grid>
