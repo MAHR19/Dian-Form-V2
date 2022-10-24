@@ -1,62 +1,52 @@
 import { useEffect } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import { receptor_initial_values } from "../form-validations/initial-values/Receptor_values";
+import { receptor_schema } from "../form-validations/schemas/Receptor_schema";
+import { Grid } from "@mui/material";
 import CustomInputText from "../form-input/CustomInputText";
 import AutocompleteInput from "../form-input/AutocompleteInput";
-import { Grid } from "@mui/material";
 
 const Receptor = ({onChange}) => {
     
-    //const[objects, setObjects] = useState({});
-    const nitvalidation = Yup.string().required('Campo requerido').matches((/^[0-9]+-{1}[0-9]{1}/g), 'NIT invalido');
-                            
     const {handleChange,values,errors,handleBlur,touched,setFieldValue} = useFormik({
-        initialValues:{
-            r_social:'',
-            email:'',
-            nit:'',
-            pais:{},
-            cp : '',
-            municipio : '',
-            departamento : '',
-            direccion :'' 
-        }, validationSchema : Yup.object({
-            r_social: Yup.string()
-                      .required('Campo requerido'),
-            email: Yup.string()
-                    .email('Email invalido')
-                    .required('Campo requerido'),
-            nit: nitvalidation,
-            n_documento: Yup.string()
-                        .required('Campo requerido'),
-            pais : Yup.object()
-                    .required('Campo requerido')         
-        }),
+        initialValues:receptor_initial_values, 
+        validationSchema : receptor_schema,
     });
 
-  
+    const handleCountryChange = () =>{
+        console.log(receptor_initial_values.pais)
+        values.cp={
+            codigo_departamento: '',
+            codigo_municipio: '',
+            name:'',
+            nombre_departamento:'',
+            nombre_municipio:'',
+            tipo:''
+        }
+        return true
+    }
+
     const handleValidation= () => {
-        if(Boolean(errors.email)===false && Boolean(errors.r_social)===false && Boolean(errors.nit)===false && Boolean(errors.n_documento)===false)
+        if(Boolean(errors.email)===false && Boolean(errors.r_social)===false 
+         && Boolean(errors.nit)===false && Boolean(errors.n_documento)===false)
         {
-            if(values.email==='' || values.r_social==='' || values.nit==='' || values.n_documento===''){return true}// true if is initial state and avoid posting
-             else{return false}// false if there aren't errors and is not initial state
+            if(values.email==='' || values.r_social==='' || values.nit===''){return true}
+            // true if is initial state and avoid posting
+             else{return false}
+             // false if there aren't errors and is not initial state
         }
         else{return true}//if has errors return true 
     }
-
 
     //*** Passing values to fullform  ***//
     useEffect(()=>{
        onChange({ Receptor:{
         values     
-       },R_extra:{
-         
        },R_valido:{
         receptor: handleValidation()
        }
        });
     },[values]);
-
 
     return(
         <Grid container spacing={2} >     
@@ -76,17 +66,21 @@ const Receptor = ({onChange}) => {
             <AutocompleteInput  xs={12} sm={10} md={6} haserror={touched.pais && Boolean(errors.pais)} name={'pais'} catalogo={'Paises'}
             setFieldValue={setFieldValue} onBlur={handleBlur} errorText={touched.pais && errors.pais} label={'País'} />
 
-            <AutocompleteInput  xs={12} sm={10} md={4} name={'cp'} catalogo={'Codigo postal'}
-            label = {'Código postal'} />
+            <AutocompleteInput  xs={12} sm={10} md={4} name={'cp'} catalogo={'CodigoPostal'}
+            setFieldValue={
+             typeof values.pais === "undefined"? values.pais=receptor_initial_values.pais:setFieldValue
+            } disabled={
+                values.pais.name === 'Colombia'? false:handleCountryChange()
+            } onBlur={handleBlur}  label = {'Código postal'} />
 
-            <AutocompleteInput  xs={12} sm={10} md={4} name={'municipio'} 
-            label = {'Municipio'} />
+            <CustomInputText  xs={12} sm={10} md={4} name={'municipio'} 
+            label = {'Municipio'} value={typeof values.cp === "undefined"? '':values.cp.nombre_municipio} disabled={true}/>
 
-            <AutocompleteInput  xs={12} sm={10} md={4} name={'departamento'} 
-            label = {'Departamento'} />
+            <CustomInputText  xs={12} sm={10} md={4} name={'departamento'} 
+            label = {'Departamento'} value={typeof values.cp === "undefined"? '':values.cp.nombre_departamento} disabled={true}/>
 
             <CustomInputText xs={12} sm={10} md={12} name={'direccion'} 
-            label={'Direccion'}  />
+            label={'Direccion'} />
 
         </Grid>  
     );
