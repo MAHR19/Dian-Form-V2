@@ -3,8 +3,10 @@ import { useFormik } from "formik";
 import { receptor_initial_values } from "../form-validations/initial-values/Receptor_values";
 import { receptor_schema } from "../form-validations/schemas/Receptor_schema";
 import { Grid } from "@mui/material";
+import CountrySelect from '../form-input/Countryselect';
 import CustomInputText from "../form-input/CustomInputText";
 import AutocompleteInput from "../form-input/AutocompleteInput";
+
 
 const Receptor = ({onChange}) => {
     
@@ -39,14 +41,14 @@ const Receptor = ({onChange}) => {
     }
 
     //*** Passing values to fullform  ***//
-    useEffect(()=>{
-       onChange({ Receptor:{
-        values     
-       },R_valido:{
-        receptor: handleValidation()
-       }
-       });
-    },[values]);
+   // useEffect(()=>{
+   //    onChange({ Receptor:{
+   //     values     
+   //    },R_valido:{
+   //     receptor: handleValidation()
+   //    }
+   //    });
+   // },[values]);
 
     return(
         <Grid container spacing={2} >     
@@ -63,25 +65,8 @@ const Receptor = ({onChange}) => {
             name={'nit'} label={'NIT*'} value={values.nit} onChange={handleChange} 
             onBlur={handleBlur} errorText={touched.nit && errors.nit} />
             
-            <AutocompleteInput  xs={12} sm={10} md={6} haserror={touched.pais && Boolean(errors.pais)} name={'pais'} catalogo={'Paises'}
-            setFieldValue={setFieldValue} onBlur={handleBlur} errorText={touched.pais && errors.pais} label={'País'} />
-
-            <AutocompleteInput  xs={12} sm={10} md={4} name={'cp'} catalogo={'CodigoPostal'}
-            setFieldValue={
-             typeof values.pais === "undefined"? values.pais=receptor_initial_values.pais:setFieldValue
-            } disabled={
-                values.pais.name === 'Colombia'? false:handleCountryChange()
-            } onBlur={handleBlur}  label = {'Código postal'} />
-
-            <CustomInputText  xs={12} sm={10} md={4} name={'municipio'} 
-            label = {'Municipio'} value={typeof values.cp === "undefined"? '':values.cp.nombre_municipio} disabled={true}/>
-
-            <CustomInputText  xs={12} sm={10} md={4} name={'departamento'} 
-            label = {'Departamento'} value={typeof values.cp === "undefined"? '':values.cp.nombre_departamento} disabled={true}/>
-
-            <CustomInputText xs={12} sm={10} md={12} name={'direccion'} 
-            label={'Direccion'} />
-
+            
+            <CountrySelect />
         </Grid>  
     );
 }

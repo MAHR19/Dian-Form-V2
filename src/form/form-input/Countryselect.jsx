@@ -2,63 +2,81 @@ import { React, useState } from 'react';
 import { Autocomplete ,TextField, Grid } from '@mui/material';
 
 const AutocompleteInput = (props) =>{
-
-   const url = 'http://127.0.0.1:8000/catalogos/Paises?name='; //API url
+   
+   
+   const url = 'http://127.0.0.1:8000/catalogos/Paises'; //API url
+   const urlCP = 'http://127.0.0.1:8000/catalogos/CodigoPostal'; //API url
 
    const [data, setData] = useState([]);
-   const [enable, setEnable] = useState(false) 
-   const [cp, setCP] = useState('')
+   const [enable, setEnable] = useState(true) 
+   const [key, setKey] = useState('')
 
 
-   const handleAPIrequest = async (query_param) => {
-        fetch(`${url}?name=${query_param}`)
+   const handleAPIrequest = async (path, query_param) => {
+        fetch(`${path}?name=${query_param}`)
         .then(response => response.json())
         .then( (api_fetch)=>{
-            if(query_param === '')
-            {
-                setData([]);
-            }else{
+            if(query_param === ''){setData([]);}
+            else{
                 setData(api_fetch);
             }
+            
         } );
    }
 
+   
+   const handleChange = (e, value) =>{
+        if(value !== 'Colombia'){
+            setEnable(true);
+        }
+        else{
+            setEnable(false);
+        }
+        
+   }
+
     return(
-        <Grid item xs={1} sm={1} md={props.md}>   
-             <Autocomplete
+        <Grid container spacing={2}>   
+            <Grid item xs={12} sm={10} md={6}>
+            <Autocomplete
                 freeSolo
                 id='pais'
                 size='small'
-                disabled = {props.disabled}
-                onChange={(event, value)=>{
-                   //console.log(value)
-                   
-                   props.setFieldValue(props.name, data.find(element => element.name === value));  
+                onChange={(event, value)=>{ 
+                    handleChange(event, value);
+                    if(value !== 'Colombia'){setKey('123')}
+                    else{setKey('132')}
                 }}
-                onInputChange={(event)=>{handleAPIrequest(event.target.value);}}
+                onInputChange={(event)=>{handleAPIrequest(url, event.target.value);}}
+                options={data.map((option)=> option.name)}
+                renderInput={(params) => 
+                <TextField error={props.haserror} helperText={props.errorText} color="success" 
+                name={props.name} {...params} onBlur={props.onBlur} label={'Pais'} 
+                    />}
+                />
+            </Grid>
+
+            <Grid item xs={12} sm={10} md={3}>
+                <Autocomplete
+                freeSolo
+                id="cp"
+                size='small'
+                key = {key}
+                onChange = {
+                    (event, value) =>{
+                      
+                    }
+                }
+                disabled = {enable}
+                onInputChange={(event)=>{handleAPIrequest(urlCP, event.target.value);}}
                 options={data.map((option)=> option.name)}
                 renderInput={(params) => 
                 <TextField error={props.haserror} helperText={props.errorText} color="success" 
                 name={props.name} {...params} onBlur={props.onBlur} label={props.label} 
                     />}
                 />
+                </Grid>
 
-                <Autocomplete
-                freeSolo
-                id="cp"
-                size='small'
-                disabled = {enable}
-                onChange={(event, value)=>{
-                   //console.log(value)
-                   props.setFieldValue(props.name, data.find(element => element.name === value));  
-                }}
-                onInputChange={(event)=>{handleAPIrequest(event.target.value);}}
-                options={data.map((option)=> option.name)}
-                renderInput={(params) => 
-                <TextField error={props.haserror} helperText={props.errorText} color="success" 
-                name={props.name} {...params} onBlur={props.onBlur} label={props.label} 
-                    />}
-                />              
         </Grid>
     );
 
