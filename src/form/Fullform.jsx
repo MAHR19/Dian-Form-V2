@@ -24,10 +24,12 @@ const Fullform = () =>{
             <form action="">
 
              <Grid container spacing={2}>
-                <Grid item xs={12} sm={10} md={6}>
+                <Grid item xs={12} sm={10} md={5}>
                 <Typography variant="h5">Receptor</Typography>
                     <Receptor onChange={setReceptor} />
                 </Grid>
+
+                
                 
              </Grid>
              

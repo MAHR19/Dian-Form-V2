@@ -15,30 +15,7 @@ const Receptor = ({onChange}) => {
         validationSchema : receptor_schema,
     });
 
-    const handleCountryChange = () =>{
-        console.log(receptor_initial_values.pais)
-        values.cp={
-            codigo_departamento: '',
-            codigo_municipio: '',
-            name:'',
-            nombre_departamento:'',
-            nombre_municipio:'',
-            tipo:''
-        }
-        return true
-    }
 
-    const handleValidation= () => {
-        if(Boolean(errors.email)===false && Boolean(errors.r_social)===false 
-         && Boolean(errors.nit)===false && Boolean(errors.n_documento)===false)
-        {
-            if(values.email==='' || values.r_social==='' || values.nit===''){return true}
-            // true if is initial state and avoid posting
-             else{return false}
-             // false if there aren't errors and is not initial state
-        }
-        else{return true}//if has errors return true 
-    }
 
     //*** Passing values to fullform  ***//
    // useEffect(()=>{
@@ -65,8 +42,8 @@ const Receptor = ({onChange}) => {
             name={'nit'} label={'NIT*'} value={values.nit} onChange={handleChange} 
             onBlur={handleBlur} errorText={touched.nit && errors.nit} />
             
-            
             <CountrySelect />
+
         </Grid>  
     );
 }

@@ -6,37 +6,55 @@ const AutocompleteInput = (props) =>{
    
    const url = 'http://127.0.0.1:8000/catalogos/Paises'; //API url
    const urlCP = 'http://127.0.0.1:8000/catalogos/CodigoPostal'; //API url
-
    const [data, setData] = useState([]);
-   const [enable, setEnable] = useState(true) 
-   const [key, setKey] = useState('')
-
+   const [codigos, setCodigos] = useState([]);
+   const [cp, setCp] = useState({});
+   const [pais, setPais] = useState({});
+   const [municipio, setMunicipio] = useState('');
+   const [departamento, setDepartamento] = useState('');
+   const [enable, setEnable] = useState(true); 
+   const [key, setKey] = useState(false);
+   
+   var cpAux = {}; 
 
    const handleAPIrequest = async (path, query_param) => {
         fetch(`${path}?name=${query_param}`)
         .then(response => response.json())
         .then( (api_fetch)=>{
-            if(query_param === ''){setData([]);}
-            else{
-                setData(api_fetch);
+            if(query_param === '')
+            {
+              setData([]);
+              setCodigos([]);
+
+            }else{
+                if(path === url)
+               {
+                 setData(api_fetch);
+               }
+               else{
+                setCodigos(api_fetch);
+               }
             }
-            
         } );
    }
 
    
    const handleChange = (e, value) =>{
-        if(value !== 'Colombia'){
+        if(value !== 'Colombia' || value === ''){
             setEnable(true);
+            setKey(true);
+            setDepartamento('');
+            setMunicipio('');
         }
         else{
             setEnable(false);
+            setKey(false);
         }
         
    }
 
     return(
-        <Grid container spacing={2}>   
+           <>
             <Grid item xs={12} sm={10} md={6}>
             <Autocomplete
                 freeSolo
@@ -44,19 +62,17 @@ const AutocompleteInput = (props) =>{
                 size='small'
                 onChange={(event, value)=>{ 
                     handleChange(event, value);
-                    if(value !== 'Colombia'){setKey('123')}
-                    else{setKey('132')}
                 }}
                 onInputChange={(event)=>{handleAPIrequest(url, event.target.value);}}
                 options={data.map((option)=> option.name)}
                 renderInput={(params) => 
                 <TextField error={props.haserror} helperText={props.errorText} color="success" 
-                name={props.name} {...params} onBlur={props.onBlur} label={'Pais'} 
+                name={props.name} {...params} onBlur={props.onBlur} label={'País'} 
                     />}
                 />
             </Grid>
 
-            <Grid item xs={12} sm={10} md={3}>
+            <Grid item xs={12} sm={10} md={4}>
                 <Autocomplete
                 freeSolo
                 id="cp"
@@ -64,20 +80,41 @@ const AutocompleteInput = (props) =>{
                 key = {key}
                 onChange = {
                     (event, value) =>{
-                      
+                      cpAux = codigos.find(element => element.name === value);
+                      if(typeof(cpAux) !== 'undefined')
+                      {
+                        setDepartamento(cpAux.nombre_departamento);
+                        setMunicipio(cpAux.nombre_municipio);
+                      }
+                      else{
+                        setDepartamento('');
+                        setMunicipio('');
+                      }
                     }
                 }
                 disabled = {enable}
                 onInputChange={(event)=>{handleAPIrequest(urlCP, event.target.value);}}
-                options={data.map((option)=> option.name)}
+                options={codigos.map((option)=> option.name)}
                 renderInput={(params) => 
                 <TextField error={props.haserror} helperText={props.errorText} color="success" 
-                name={props.name} {...params} onBlur={props.onBlur} label={props.label} 
+                name={props.name} {...params} onBlur={props.onBlur} label='Codigo Postal' 
                     />}
                 />
                 </Grid>
 
-        </Grid>
+                <Grid item xs={12} sm={10} md={4}>
+                    <TextField size='small' key = {key} fullWidth value = {municipio} label='Municipio' disabled={true} />
+                </Grid>
+
+                <Grid item xs={12} sm={10} md={4}>
+                    <TextField size='small' key = {key} fullWidth value = {departamento} label='Departamento' disabled={true} />
+                </Grid>
+
+                <Grid item xs={12} sm={10} md={12}>
+                    <TextField size='small' fullWidth label='Direccion' color="success" />
+                </Grid>
+
+        </>
     );
 
 }

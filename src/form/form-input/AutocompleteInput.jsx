@@ -16,7 +16,6 @@ const AutocompleteInput = (props) =>{
                 setData(api_fetch);
             }else{
                 setData([]);
-                //setInputValue(query_param);
             }
             console.log(data);
         } );
@@ -33,7 +32,7 @@ const AutocompleteInput = (props) =>{
                 onChange={(event, value)=>{
                    props.setFieldValue(props.name, data.find(element => element.name === value));  
                 }}
-                onInputChange={(event,inputValue)=>{handleAPIrequest(event.target.value);}}
+                onInputChange={(event)=>{handleAPIrequest(event.target.value);}}
                 options={data.map((option)=> option.name)}
                 renderInput={(params) => 
                 <TextField error={props.haserror} helperText={props.errorText} color="success" 
