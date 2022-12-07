@@ -30,15 +30,15 @@ const Receptor = ({onChange}) => {
     return(
         <Grid container spacing={2} >     
 
-            <CustomInputText xs={12} sm={10} md={7} haserror={touched.r_social && Boolean(errors.r_social)} 
+            <CustomInputText md={7} haserror={touched.r_social && Boolean(errors.r_social)} 
             name={'r_social'} label={'Razón social*'} value={values.r_social} onChange={handleChange} 
             onBlur={handleBlur} errorText={touched.r_social && errors.r_social} />
 
-            <CustomInputText xs={12} sm={10} md={5} haserror={touched.email && Boolean(errors.email)} 
+            <CustomInputText md={5} haserror={touched.email && Boolean(errors.email)} 
             name={'email'} label={'Email*'} value={values.email} onChange={handleChange} 
             onBlur={handleBlur} errorText={touched.email && errors.email} />
 
-            <CustomInputText xs={12} sm={10} md={6} haserror={touched.nit && Boolean(errors.nit)} 
+            <CustomInputText md={6} haserror={touched.nit && Boolean(errors.nit)} 
             name={'nit'} label={'NIT*'} value={values.nit} onChange={handleChange} 
             onBlur={handleBlur} errorText={touched.nit && errors.nit} />
             

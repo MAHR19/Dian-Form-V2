@@ -4,7 +4,7 @@ import { useState } from "react";
 //import * as Yup from "yup";
 import { Box,Grid,Typography } from "@mui/material";
 import Receptor from "./form-sections/Receptor";
-
+import Documento from "./form-sections/Documento";
 
 
 const Fullform = () =>{
@@ -24,9 +24,13 @@ const Fullform = () =>{
             <form action="">
 
              <Grid container spacing={2}>
-                <Grid item xs={12} sm={10} md={5}>
+                <Grid item xs={12} sm={10} md={6}>
                 <Typography variant="h5">Receptor</Typography>
                     <Receptor onChange={setReceptor} />
+                </Grid>
+                <Grid item xs={12} sm={10} md={6}>
+                <Typography variant="h5">Documento</Typography>
+                    <Documento onChange={setReceptor} />
                 </Grid>
 
                 

@@ -23,7 +23,7 @@ const AutocompleteInput = (props) =>{
 
 
     return(
-        <Grid item xs={props.xs} sm={props.sm} md={props.md}>   
+        <Grid item xs={12} sm={12} md={props.md}>   
              <Autocomplete
                 freeSolo
                 id="list"
