@@ -67,7 +67,7 @@ const AutocompleteInput = (props) =>{
 
     return(
            <>
-            <Grid item xs={12} sm={10} md={6}>
+            <Grid item xs={12} sm={10} md={3}>
             <Autocomplete
                 freeSolo
                 id='pais'
@@ -84,7 +84,7 @@ const AutocompleteInput = (props) =>{
                 />
             </Grid>
 
-            <Grid item xs={12} sm={10} md={4}>
+            <Grid item xs={12} sm={10} md={3}>
                 <Autocomplete
                 freeSolo
                 id="cp"
@@ -105,11 +105,11 @@ const AutocompleteInput = (props) =>{
                 />
                 </Grid>
 
-                <Grid item xs={12} sm={10} md={4}>
+                <Grid item xs={12} sm={10} md={3}>
                     <TextField size='small' key = {key} fullWidth value = {municipio} label='Municipio' disabled={true} />
                 </Grid>
 
-                <Grid item xs={12} sm={10} md={4}>
+                <Grid item xs={12} sm={10} md={3} >
                     <TextField size='small' key = {key} fullWidth value = {departamento} label='Departamento' disabled={true} />
                 </Grid>
 

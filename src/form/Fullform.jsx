@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 //import { useFormik } from "formik";
 //import * as Yup from "yup";
-import { Box,Grid,Typography } from "@mui/material";
+import GoogleButton from "../login/login-items/GoogleButton";
+import { Box,Grid,Typography,Paper,Container } from "@mui/material";
 import Receptor from "./form-sections/Receptor";
 import Documento from "./form-sections/Documento";
 
@@ -25,12 +26,21 @@ const Fullform = () =>{
 
              <Grid container spacing={2}>
                 <Grid item xs={12} sm={10} md={6}>
-                <Typography variant="h5">Receptor</Typography>
+                <Box component={'div'}> <Typography variant="h5" gutterBottom>Receptor</Typography> </Box>
                     <Receptor onChange={setReceptor} />
                 </Grid>
                 <Grid item xs={12} sm={10} md={6}>
-                <Typography variant="h5">Documento</Typography>
+                <Box> <Typography variant="h5" gutterBottom>Documento</Typography> </Box>
+                    
+                    
+
                     <Documento onChange={setReceptor} />
+
+                    
+                    
+                          
+                    
+                    <GoogleButton/>
                 </Grid>
 
                 

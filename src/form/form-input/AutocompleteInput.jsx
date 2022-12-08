@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Autocomplete ,TextField, Grid } from '@mui/material';
+import { Autocomplete ,TextField, Grid, Paper } from '@mui/material';
 
 const AutocompleteInput = (props) =>{
 
@@ -24,6 +24,7 @@ const AutocompleteInput = (props) =>{
 
     return(
         <Grid item xs={12} sm={12} md={props.md}>   
+             <Paper elevation={1}>
              <Autocomplete
                 freeSolo
                 id="list"
@@ -38,7 +39,8 @@ const AutocompleteInput = (props) =>{
                 <TextField error={props.haserror} helperText={props.errorText} color="success" 
                 name={props.name} {...params} onBlur={props.onBlur} label={props.label} 
                     />}
-                />       
+                />  
+            </Paper>     
         </Grid>
     );
 
