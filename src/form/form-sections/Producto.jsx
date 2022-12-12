@@ -1,23 +1,32 @@
 import {React, useState} from "react";
-import {Table, TableContainer, TableBody, TableCell, TableHead, TableRow} from '@mui/material';
+import {Table, TableContainer, TableBody, TableCell, TableHead, TableRow, Collapse} from '@mui/material';
 import {Paper, IconButton} from '@mui/material';
 import AutocompleteInput from "../form-input/AutocompleteInput";
 import CustomInputText from "../form-input/CustomInputText";
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import TableItemProduct from "../table-items/TableItemProduct";
-import { blue } from "@mui/material/colors";
+import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
 
 const Producto = () =>{
 
-    const [productos, Addproductos] = useState([{'producto' : ''}])
+    const [productos, setProductos] = useState([{'producto' : ''}])
+    const [trans, setTrans] = useState(false);
 
     const handleAddProduct = () => {
-        Addproductos([...productos, {'producto' : ''}]);
-    } 
+        setProductos([...productos, {'producto' : ''}]);
+        setTrans(true);
+    }
+
+    const handleDeleteProduct = (index) =>{
+      const list = [...productos];
+      list.splice(index, 1);
+      setProductos(list);
+    }
+    
         return (
             <Paper elevation={5}>
             <TableContainer>
-              <Table>
+              <Table stickyHeader>
                 <TableHead>
                   <TableRow>
                     <TableCell> 
@@ -26,16 +35,21 @@ const Producto = () =>{
                         </IconButton>
                         </TableCell>
                     <TableCell>Codigo</TableCell>
-                    <TableCell >Calories</TableCell>
-                    <TableCell >Fat&nbsp;(g)</TableCell>
-                    <TableCell >Carbs&nbsp;(g)</TableCell>
-                    <TableCell >nameu</TableCell>
+                    <TableCell >Descripción</TableCell>
+                    <TableCell >U/M</TableCell>
+                    <TableCell >Cantidad</TableCell>
+                    <TableCell >Precio unitario</TableCell>
+                    <TableCell >IVA</TableCell>
+                    <TableCell >Descuento</TableCell>
+                    <TableCell >Total</TableCell>
+                    <TableCell >Acciones</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                    {productos.map((producto,index)=>
-                        <TableItemProduct key={index} />
-                    )}
+                    {productos.map((producto,index)=>( 
+                          <TableItemProduct key = {index} index = {index+1}
+                          removeItem = { ()=> {handleDeleteProduct(index)} } Grow = {trans}/>
+                       ))}
                 </TableBody>
               </Table>
             </TableContainer>

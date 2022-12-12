@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import { receptor_initial_values } from "../form-validations/initial-values/Receptor_values";
@@ -14,18 +15,6 @@ const Receptor = ({onChange}) => {
         initialValues:receptor_initial_values, 
         validationSchema : receptor_schema,
     });
-
-
-
-    //*** Passing values to fullform  ***//
-   // useEffect(()=>{
-   //    onChange({ Receptor:{
-   //     values     
-   //    },R_valido:{
-   //     receptor: handleValidation()
-   //    }
-   //    });
-   // },[values]);
 
     return(
         <Paper elevation={5}
