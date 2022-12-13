@@ -25,6 +25,10 @@ const FullformFE = () =>{
             <form action="">
 
              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12} md={12}>
+                 <Typography variant="h4" gutterBottom>Factura Electrónica</Typography>
+                </Grid>
+
                 <Grid item xs={12} sm={12} md={6}>
                 <Box component={'div'}> <Typography variant="h5" gutterBottom>Receptor</Typography> </Box>
                     <Receptor onChange={setReceptor} />
@@ -38,6 +42,22 @@ const FullformFE = () =>{
                 <Grid item xs={12} sm={12} md={12}>
                 <Box> <Typography variant="h5" gutterBottom>Productos</Typography> </Box>
                     <Producto />
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={12}>
+                <Box> <Typography variant="h5" gutterBottom>Impuestos</Typography> </Box>
+                    <Producto />
+                </Grid>
+
+
+                <Grid item xs={12} sm={12} md={6}>
+                <Box> <Typography variant="h5" gutterBottom>Notas</Typography> </Box>
+                   
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={6}>
+                <Box> <Typography variant="h5" gutterBottom>Totales</Typography> </Box>
+                   
                 </Grid>
 
                 

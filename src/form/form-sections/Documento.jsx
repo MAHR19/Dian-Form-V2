@@ -17,17 +17,18 @@ const Documento  = () =>{
         label = {'Tipo negociación'}
         />
 
-        <AutocompleteInput md = {4} name = {'medio_pago'}
+        <AutocompleteInput md = {6} name = {'medio_pago'}
         label = {'Medio de pago'} 
         />
 
-        <AutocompleteInput md = {4} name = {'tipo_documento'}
+        <AutocompleteInput md = {6} name = {'moneda'}
+        label = {'Moneda'} catalogo = {'TipoMoneda'} 
+        />
+
+        <AutocompleteInput md = {6} name = {'tipo_documento'}
         label = {'Tipo de documento'} catalogo = {'TipoDocumento'} 
         />
 
-        <AutocompleteInput md = {4} name = {'moneda'}
-        label = {'Moneda'} catalogo = {'TipoMoneda'} 
-        />
 
         <DateSelector 
          label = {'Fecha de Vencimiento'}

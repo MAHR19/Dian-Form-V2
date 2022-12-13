@@ -12,7 +12,7 @@ const TableItemProduct = ({index, removeItem, Grow}) =>{
     return(
         
         <TableRow>
-            <TableCell>
+            <TableCell align="center">
               {index}
             </TableCell>
             <TableCell>
