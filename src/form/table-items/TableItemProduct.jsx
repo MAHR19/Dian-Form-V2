@@ -1,9 +1,8 @@
 import React from "react";
-import { TableRow, TableCell, TextField, IconButton, Grow } from "@mui/material";
+import { TableRow, TableCell, IconButton } from "@mui/material";
 import AutocompleteInput from "../form-input/AutocompleteInput";
-import CustomInputText from "../form-input/CustomInputText";
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
-
+import TextInputTable from "./table-input/TextInputTable";
 
 
 const TableItemProduct = ({index, removeItem, Grow}) =>{
@@ -15,30 +14,15 @@ const TableItemProduct = ({index, removeItem, Grow}) =>{
             <TableCell align="center">
               {index}
             </TableCell>
-            <TableCell>
-                <AutocompleteInput />
-            </TableCell>
-            <TableCell>
-                <CustomInputText />
-            </TableCell>
-            <TableCell>
-                <TextField />
-            </TableCell>
-            <TableCell>
-                <TextField />
-            </TableCell>
-            <TableCell>
-                <TextField />
-            </TableCell>
-            <TableCell>
-                <TextField />
-            </TableCell>
-            <TableCell>
-                <TextField />
-            </TableCell>
-            <TableCell>
-                <TextField />
-            </TableCell>
+            <TextInputTable />
+            <TextInputTable />
+            <TextInputTable />
+            <TextInputTable />
+            <TextInputTable />
+            <TextInputTable />
+            <TextInputTable />
+            <TextInputTable />
+
             {(index - 1) > 0 && (
                 <TableCell>
                     <IconButton onClick={removeItem}>

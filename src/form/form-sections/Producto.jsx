@@ -1,13 +1,7 @@
 import {React, useState} from "react";
-import {Table, TableContainer, TableBody, TableCell, TableHead, TableRow, Collapse} from '@mui/material';
-import {Paper, IconButton} from '@mui/material';
-import AutocompleteInput from "../form-input/AutocompleteInput";
-import CustomInputText from "../form-input/CustomInputText";
-import AddItemTable from "../table-items/AddItemTable";
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import {Table, TableContainer, TableBody, Paper, TableHead} from '@mui/material';
 import TableItemProduct from "../table-items/TableItemProduct";
-import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
-
+import TableHeaders from "../table-items/TableHeaders";
 
 const Producto = () =>{
 
@@ -30,18 +24,7 @@ const Producto = () =>{
             <TableContainer>
               <Table stickyHeader>
                 <TableHead>
-                  <TableRow>
-                    <AddItemTable handleAddProduct = {handleAddProduct}/>
-                    <TableCell align="center">Codigo</TableCell>
-                    <TableCell align="center">Descripción</TableCell>
-                    <TableCell align="center">U/M</TableCell>
-                    <TableCell align="center">Cantidad</TableCell>
-                    <TableCell align="center">Precio unitario</TableCell>
-                    <TableCell align="center">IVA</TableCell>
-                    <TableCell align="center">Descuento</TableCell>
-                    <TableCell align="center">Total</TableCell>
-                    <TableCell align="center">Acciones</TableCell>
-                  </TableRow>
+                  <TableHeaders handleAddProduct = {handleAddProduct}/>
                 </TableHead>
                 <TableBody>
                     {productos.map((producto,index)=>( 
@@ -53,8 +36,6 @@ const Producto = () =>{
             </TableContainer>
             </Paper>
           );
-   
-    
 }
 
 export default Producto;

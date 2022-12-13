@@ -10,7 +10,8 @@ const CustomInputText =(props)=>{
             <Paper elevation={1}>
                 <TextField color="success" error={props.haserror} fullWidth name={props.name} label={props.label}
                  onChange={props.onChange} onBlur={props.onBlur} value={props.value} 
-                 helperText={props.errorText} size='small' disabled={props.disabled} />
+                 helperText={props.errorText} size='small' disabled={props.disabled} 
+                 />
             </Paper>
         </Grid>
     );
