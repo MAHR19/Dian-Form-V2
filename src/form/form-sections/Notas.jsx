@@ -13,7 +13,7 @@ const Notas = () =>{
              multiline
              fullWidth
              color='success'
-             maxRows = {6}
+             maxRows = {5}
             />
      </Paper>
     );

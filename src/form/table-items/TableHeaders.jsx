@@ -7,7 +7,7 @@ const TableHeaders = ({handleAddProduct}) =>{
     return(
         <TableRow>
             <AddItemTable handleAddProduct = {handleAddProduct}/>
-            <TableCell align="center">Codigo</TableCell>
+            <TableCell align="center" size='medium'>Codigo</TableCell>
             <TableCell align="center">Descripción</TableCell>
             <TableCell align="center">U/M</TableCell>
             <TableCell align="center">Cantidad</TableCell>
