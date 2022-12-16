@@ -16,6 +16,7 @@ const TableHeaders = ({handleAddProduct}) =>{
             <TableCell align="center">Descuento</TableCell>
             <TableCell align="center">Total</TableCell>
             <TableCell align="center">Acciones</TableCell>
+
         </TableRow>
 
     );

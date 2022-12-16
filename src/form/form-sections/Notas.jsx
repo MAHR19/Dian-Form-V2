@@ -1,11 +1,11 @@
 import React from 'react';
-import { TextField, Paper } from '@mui/material';
+import { TextField, Paper, Grid } from '@mui/material';
 
 const Notas = () =>{
     return(
      <Paper elevation={5} style = {{
         'padding' : 8
-     }}> 
+     }}>    <Grid container>
             <TextField
              id='Nota'
              label='Nota'
@@ -15,6 +15,8 @@ const Notas = () =>{
              color='success'
              maxRows = {5}
             />
+            
+            </Grid>
      </Paper>
     );
     

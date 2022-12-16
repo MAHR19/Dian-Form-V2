@@ -1,14 +1,13 @@
 import React from "react";
 import { useState } from "react";
-//import { useFormik } from "formik";
-//import * as Yup from "yup";
 import GoogleButton from "../login/login-items/GoogleButton";
-import { Box,Grid,Typography,Paper,Container } from "@mui/material";
+import { Box,Grid,Typography,Paper,Container, Divider } from "@mui/material";
 import Receptor from "./form-sections/Receptor";
 import Documento from "./form-sections/Documento";
 import Producto from "./form-sections/Producto";
 import Notas from "./form-sections/Notas";
 import Totales from "./form-sections/Totales";
+
 
 const FullformFE = () =>{
 
@@ -29,8 +28,9 @@ const FullformFE = () =>{
              <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={12}>
                  <Typography variant="h4" gutterBottom>Factura Electrónica</Typography>
+                 <Divider />
                 </Grid>
-
+                
                 <Grid item xs={12} sm={12} md={6}>
                 <Box component={'div'}> <Typography variant="h5" gutterBottom>Receptor</Typography> </Box>
                     <Receptor onChange={setReceptor} />

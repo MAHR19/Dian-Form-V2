@@ -1,5 +1,5 @@
 import {React, useState} from "react";
-import {Table, TableContainer, TableBody, Paper, TableHead} from '@mui/material';
+import {Button, Table, TableContainer, TableBody, Paper, TableHead, TableCell, TableRow} from '@mui/material';
 import TableItemProduct from "../table-items/TableItemProduct";
 import TableHeaders from "../table-items/TableHeaders";
 
@@ -7,7 +7,8 @@ import TableHeaders from "../table-items/TableHeaders";
 const Producto = () =>{
 
     const [productos, setProductos] = useState([{'producto' : ''}])
- 
+    const [pvalues, setPValues] = useState([])
+
     const handleAddProduct = () => {
         setProductos([...productos, {'producto' : ''}]);
     }
@@ -21,16 +22,16 @@ const Producto = () =>{
         return (
             <Paper elevation={5}>
             <TableContainer>
-              <Table stickyHeader sx={{
-                minWidth : 650
-              }}>
+              <Table stickyHeader>
                 <TableHead>
                   <TableHeaders handleAddProduct = {handleAddProduct}/>
                 </TableHead>
                 <TableBody>
-                    {productos.map((producto,index)=>( 
+                    {productos.map((producto, index)=>( 
                           <TableItemProduct key = {index} index = {index+1}
-                          removeItem = { ()=> {handleDeleteProduct(index)} } />
+                          handleDeleteProduct = {handleDeleteProduct} 
+                          setPValues = {setPValues} pvalues = {pvalues} 
+                           />
                        ))}
                 </TableBody>
               </Table>

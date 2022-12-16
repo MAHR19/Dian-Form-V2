@@ -5,9 +5,7 @@ const TextInputTable = ({value, disabled}) =>{
     return(
       <TableCell >
         <TextField 
-        style={{
-          width: 130 
-      }}
+
          size = 'small'
          color='success'
          disabled = {disabled}

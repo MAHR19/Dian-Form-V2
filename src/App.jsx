@@ -4,16 +4,35 @@ import Login from "./login/Login";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline, Paper } from "@mui/material";
 
+
 const darkmode = createTheme({
     palette:{
-        mode : 'dark'
+        mode : 'dark',
     },
+    background : {
+      
+    }
+});
+
+const lightmode = createTheme({
+    spacing: 8 ,
+    typography: { 
+       
+    },palette:{
+        mode : 'light',
+    
+    },
+    
+    
 });
 
 const App = () =>{
     return(
         <div>
+           
             <FullformFE />
+           
+           
         </div>
     );
 }

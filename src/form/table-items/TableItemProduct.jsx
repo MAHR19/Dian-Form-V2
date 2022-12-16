@@ -1,22 +1,47 @@
 import {React, useState} from "react";
 import { TableRow, TableCell, IconButton } from "@mui/material";
-import AutocompleteInput from "../form-input/AutocompleteInput";
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
 import TextInputTable from "./table-input/TextInputTable";
 import AutoInputTable from "./table-input/AutoInputTable";
 import { Formik, form } from 'formik';
-import Button from "@mui/material/Button";
 
 
-const TableItemProduct = ({index, removeItem}) =>{
-     
-    const [producto, setProducto] = useState([])
 
-    const handleClick = () =>{
-        console.log('as')
-        console.log(producto)
+const TableItemProduct = ({index, handleDeleteProduct, setPValues, pvalues}) =>{
+    
+    let list = [];
+    const [description, setDescription] = useState('');
+    const [um, setUM] = useState('');
+    const [valor_u, setValor_u] = useState('');
+    
+    
+    const handleValues = (item) =>{
+        if(typeof(item) !== 'undefined')
+        {   setDescription(item.descripcion);
+            setUM(item.um);
+            setValor_u(item.precio_u);
+            const impuesto = {'impuesto':'12'}
+            list = pvalues;
+            list = [...list, { 'Producto' : {'datos' : item, impuesto}}]
+            setPValues(list);
+        }else{
+            list = pvalues;
+            list.splice((index-1), 1)
+            setPValues(list)
+            setDescription('');
+            setUM('');
+            setValor_u('');
+        }
     }
 
+    const handleDelete = () => {
+        list = pvalues;
+        list.splice((index-1), 1)
+        setPValues(list)
+        handleDeleteProduct(index-1)
+    }
+
+    
     return(
         <Formik 
          initialValues={{
@@ -26,22 +51,23 @@ const TableItemProduct = ({index, removeItem}) =>{
              <TableCell align="center">
                {index}
              </TableCell>
-             <AutoInputTable producto = {producto} setProducto = {setProducto} index = {index} />
+             <AutoInputTable index = {index} handleValues = {handleValues}  
+                 />
+             <TextInputTable value = {description} disabled = {true}
+                />
+             <TextInputTable value={um} disabled = {true}
+                />
+             <TextInputTable 
+                />
+             <TextInputTable value={valor_u} disabled = {true}
+                />
              <TextInputTable />
              <TextInputTable />
-             <TextInputTable />
-             <TextInputTable />
-             <TextInputTable />
-             <TextInputTable />
-             <TextInputTable />
-             <TableCell onClick={handleClick}>
-                <Button>
-                    log
-                </Button>
-             </TableCell>
+             <TextInputTable disabled={true}/>
+             
              {(index - 1) > 0 && (
                  <TableCell>
-                     <IconButton onClick={removeItem}>
+                     <IconButton onClick={handleDelete}>
                      <RemoveCircleRoundedIcon />
                  </IconButton>
                  </TableCell>

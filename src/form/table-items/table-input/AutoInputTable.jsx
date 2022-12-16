@@ -1,7 +1,7 @@
 import {React, useState} from 'react';
 import { TableCell, Autocomplete, TextField } from '@mui/material';
 
-const AutoInputTable = ({setProducto, index, producto}) =>{
+const AutoInputTable = ({ index, handleValues, productos}) =>{
 
     const[data, setData] = useState([])
 
@@ -17,21 +17,16 @@ const AutoInputTable = ({setProducto, index, producto}) =>{
         } );
    }
 
-   const handleItemAdden = (value) => {
-     //console.log(producto)
-     let item = data.find((element)=> element.name === value);
-     let list = producto;
-     console.log(list)
-     list.push({'Producto':item})
-     console.log(list)
-     setProducto(list);
+   const handleItemAdden = (event, value) => {
+     const item = data.find((element)=> element.name === value);
+     console.log(item)
+     handleValues(item);
    } 
     
-
     return(
         <TableCell >
             <Autocomplete
-                style={{
+                sx={{
                     width: 130 
                 }}
                 freeSolo
@@ -40,12 +35,11 @@ const AutoInputTable = ({setProducto, index, producto}) =>{
                 size='small'
                 fullWidth
                 onInputChange={(event, inputValue) => handleAPIrequest(inputValue)}
-                onChange = { (event, value) => handleItemAdden(value)}
+                onChange = { (event, value) => handleItemAdden(event, value)}
                 renderInput = {
                     (params) => <TextField {...params} label='Codigo' />
                 }
              />
-
         </TableCell>
     );
 }
