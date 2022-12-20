@@ -1,5 +1,4 @@
 
-import { useEffect } from "react";
 import { useFormik } from "formik";
 import { receptor_initial_values } from "../form-validations/initial-values/Receptor_values";
 import { receptor_schema } from "../form-validations/schemas/Receptor_schema";

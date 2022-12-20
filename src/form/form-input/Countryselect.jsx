@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
-import { Autocomplete ,TextField, Grid, Paper } from '@mui/material';
+import { Autocomplete ,TextField, Grid} from '@mui/material';
+import { useFormik } from 'formik';
 
 const AutocompleteInput = (props) =>{
    
@@ -12,8 +13,12 @@ const AutocompleteInput = (props) =>{
    const [departamento, setDepartamento] = useState('');
    const [enable, setEnable] = useState(true); 
    const [key, setKey] = useState(false);
+   var cpAux = {};
    
-   var cpAux = {}; //no me funciono con useState :c
+
+   const {} = useFormik({
+        
+    });
 
    const handleAPIrequest = async (path, query_param) => {
         fetch(`${path}?name=${query_param}`)
@@ -22,6 +27,7 @@ const AutocompleteInput = (props) =>{
             if(query_param === '')
             {
               setData([]);
+              
               setCodigos([]);
 
             }else{
@@ -79,11 +85,15 @@ const AutocompleteInput = (props) =>{
                 onInputChange={(event)=>{handleAPIrequest(url, event.target.value);}}
                 options={data.map((option)=> option.name)}
                 renderInput={(params) => 
-                <TextField error={props.haserror} helperText={props.errorText} color="success" 
-                name={props.name} {...params} onBlur={props.onBlur} label={'País'} 
-                    />}
+                <TextField 
+                 {...params}
+                 color="success" 
+                 name={props.name}  
+                 onBlur={props.onBlur} 
+                 label={'País'} 
+                    />
+                }
                 />
-                
             </Grid>
 
             <Grid item xs={12} sm={12} md={3}>
