@@ -17,7 +17,7 @@ const DateSelector = (props) =>{
     return(
         <Grid item xs={12} sm={12} md={6}>
          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Paper elevation={1}>
+           
             <DesktopDatePicker
                 label={props.label}
                 inputFormat="MM/DD/YYYY"
@@ -27,7 +27,7 @@ const DateSelector = (props) =>{
                 fullWidth size='small'
                 color='success'/>}
             />
-            </Paper>
+           
          </LocalizationProvider>
         </Grid>
     );

@@ -68,7 +68,7 @@ const AutocompleteInput = (props) =>{
     return(
            <>
             <Grid item xs={12} sm={12} md={3}>
-            <Paper elevation={1}>
+           
             <Autocomplete
                 freeSolo
                 id='pais'
@@ -83,11 +83,11 @@ const AutocompleteInput = (props) =>{
                 name={props.name} {...params} onBlur={props.onBlur} label={'País'} 
                     />}
                 />
-                </Paper>
+                
             </Grid>
 
             <Grid item xs={12} sm={12} md={3}>
-                <Paper elevation={1}>
+                
                 <Autocomplete
                 freeSolo
                 id="cp"
@@ -106,25 +106,25 @@ const AutocompleteInput = (props) =>{
                 name={props.name} {...params} onBlur={props.onBlur} label='Codigo Postal' 
                     />}
                 />
-                </Paper>
+                
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={3}>
-                    <Paper elevation={1}>
+                  
                     <TextField size='small' key = {key} fullWidth value = {municipio} label='Municipio' disabled={true} />
-                    </Paper>
+                    
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={3} >
-                    <Paper elevation={1}>
+                   
                     <TextField size='small' key = {key} fullWidth value = {departamento} label='Departamento' disabled={true} />
-                    </Paper>
+                   
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={12}>
-                    <Paper elevation={1}>
+                 
                     <TextField size='small' fullWidth label='Direccion' color="success" />
-                    </Paper>
+                    
                 </Grid>
 
         </>

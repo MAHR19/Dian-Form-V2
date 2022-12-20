@@ -13,8 +13,12 @@ const TableItemProduct = ({index, handleDeleteProduct, setPValues, pvalues}) =>{
     const [description, setDescription] = useState('');
     const [um, setUM] = useState('');
     const [valor_u, setValor_u] = useState('');
-    
-    
+    const [total, setTotal] = useState('');
+
+    const handleTotal = () =>{
+
+    }
+
     const handleValues = (item) =>{
         if(typeof(item) !== 'undefined')
         {   setDescription(item.descripcion);

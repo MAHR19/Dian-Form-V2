@@ -24,7 +24,7 @@ const AutocompleteInput = (props) =>{
 
     return(
         <Grid item xs={12} sm={12} md={props.md}>   
-             <Paper elevation={1}>
+             
              <Autocomplete
                 freeSolo
                 id="list"
@@ -40,7 +40,7 @@ const AutocompleteInput = (props) =>{
                 name={props.name} {...params} onBlur={props.onBlur} label={props.label} 
                     />}
                 />  
-            </Paper>     
+               
         </Grid>
     );
 

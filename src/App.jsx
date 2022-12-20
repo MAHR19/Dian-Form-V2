@@ -28,11 +28,8 @@ const lightmode = createTheme({
 
 const App = () =>{
     return(
-        <div>
-           
-            <FullformFE />
-           
-           
+        <div>          
+            <FullformFE />    
         </div>
     );
 }

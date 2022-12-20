@@ -5,6 +5,7 @@ import { Box,Grid,Typography,Paper,Container, Divider } from "@mui/material";
 import Receptor from "./form-sections/Receptor";
 import Documento from "./form-sections/Documento";
 import Producto from "./form-sections/Producto";
+import ListProductos from "./list-items/ListProductos";
 import Notas from "./form-sections/Notas";
 import Totales from "./form-sections/Totales";
 
@@ -43,7 +44,7 @@ const FullformFE = () =>{
                 </Grid>   
                 <Grid item xs={12} sm={12} md={12}>
                 <Box> <Typography variant="h5" gutterBottom>Productos</Typography> </Box>
-                    <Producto />
+                    <ListProductos />
                 </Grid>
 
 
@@ -57,7 +58,7 @@ const FullformFE = () =>{
                     <Totales />
                 </Grid>
 
-                
+             
              </Grid>
             
 
