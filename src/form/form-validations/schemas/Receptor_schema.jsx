@@ -15,3 +15,4 @@ export const receptor_schema = Yup.object({
             cp : Yup.object()
             .required('Campo requerido')
 })
+

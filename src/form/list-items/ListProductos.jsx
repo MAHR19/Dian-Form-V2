@@ -1,7 +1,7 @@
 import {React, useState} from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import { Button ,Paper, Collapse } from '@mui/material';
+import { Button ,Paper } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ListItemProducto from './ListItemProducto';
 

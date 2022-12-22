@@ -1,6 +1,5 @@
 import React from 'react';
 import {Grid, Paper} from '@mui/material';
-import CustomInputText from '../form-input/CustomInputText';
 import DateSelector from '../form-input/DateSelector';
 import AutocompleteInput from '../form-input/AutocompleteInput';
 

@@ -19,7 +19,7 @@ const ListAutocomplete = ({md, handleValues}) =>{
     }
 
     const handleFetch = (value) => {
-      const item = data.find((element) => value == element.name);
+      const item = data.find((element) => value === element.name);
       handleValues(item);
     }
 
