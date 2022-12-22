@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Box,Grid,Typography, Divider, Button } from "@mui/material";
-import { Formik, Form  } from "formik";
 import Receptor from "./form-sections/Receptor";
 import Documento from "./form-sections/Documento";
 import ListProductos from "./list-items/ListProductos";
@@ -10,12 +9,17 @@ import Totales from "./form-sections/Totales";
 
 const FullformFE = () =>{
 
-    const[receptor, setReceptor] = useState([{}]);
-    //const[documento, setDocumento] = useState({});
+    const[receptor, setReceptor] = useState({});
+    const[documento, setDocumento] = useState({});
+    const[nota, setNota] = useState({});
 
+    const handleFormData = () =>{
+
+    }
 
     const handleClick = () => {
         console.log(receptor)
+        console.log(documento)
     }
 
     return(
@@ -34,11 +38,12 @@ const FullformFE = () =>{
                     setReceptor = {setReceptor} 
                     />
                 </Grid>
+
                 <Grid item xs={12} sm={12} md={6}>
                 <Box> <Typography variant="h5" gutterBottom>Documento</Typography> </Box>
-                    
+
                     <Documento 
-                     onChange={setReceptor} 
+                     setDocumento = {setDocumento} 
                     />
 
                 </Grid>   
@@ -49,7 +54,9 @@ const FullformFE = () =>{
                 
                 <Grid item xs={12} sm={12} md={8}>
                 <Box> <Typography variant="h5" gutterBottom>Notas</Typography> </Box>
-                   <Notas />
+                   <Notas 
+                    setNota = {setNota}
+                   />
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={4}>

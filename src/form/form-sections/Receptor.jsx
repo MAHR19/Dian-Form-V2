@@ -19,9 +19,8 @@ const Receptor = ({setReceptor}) => {
 
     
     useEffect(()=>(
-        setReceptor({...values, address})
-       ),[values])
-
+        setReceptor({...values, ...address})
+       ),[values, address])
 
     return(
                 <Paper elevation={5}

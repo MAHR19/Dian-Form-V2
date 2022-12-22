@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 import { Grid, TextField } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -6,11 +6,12 @@ import { DesktopDatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 
 
-const DateSelector = (props) =>{
-    const [value, setValue] = React.useState(dayjs());
+const DateSelector = ({label, name, haserror, errorText, onBlur, setFieldValue}) =>{
+    const [value, setValue] = useState(dayjs());
 
     const handleChange = (newValue) => {
         setValue(newValue);
+        setFieldValue(name, dayjs(newValue).format('DD/MM/YYYY'));
       };
 
 
@@ -19,13 +20,21 @@ const DateSelector = (props) =>{
          <LocalizationProvider dateAdapter={AdapterDayjs}>
            
             <DesktopDatePicker
-                label={props.label}
+                label={label}
                 inputFormat="MM/DD/YYYY"
                 value={value}
                 onChange={handleChange}
-                renderInput={(params) => <TextField {...params} 
-                fullWidth size='small'
-                color='success'/>}
+                renderInput = {(params) => 
+                <TextField 
+                 {...params} 
+                 onBlur = {onBlur}
+                 fullWidth 
+                 size = 'small'
+                 color = 'success'
+                 name = {name}
+                 error = {haserror}
+                 helperText = {errorText}  
+                  />}
             />
            
          </LocalizationProvider>

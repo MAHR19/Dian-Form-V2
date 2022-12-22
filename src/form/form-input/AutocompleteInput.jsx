@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import { Autocomplete ,TextField, Grid } from '@mui/material';
 
-const AutocompleteInput = (props) =>{
+const AutocompleteInput = ({onBlur, name, haserror, errorText, disabled, label, md, catalogo, setFieldValue}) =>{
 
-   const url = 'http://127.0.0.1:8000/catalogos/'+props.catalogo; //API url
+   const url = 'http://127.0.0.1:8000/catalogos/'+catalogo; //API url
 
    const [data, setData] = useState([]); 
    //const [inputValue, setInputValue] = useState('');
@@ -17,27 +17,32 @@ const AutocompleteInput = (props) =>{
             }else{
                 setData([]);
             }
-            console.log(data);
         } );
    }
 
 
     return(
-        <Grid item xs={12} sm={12} md={props.md}>   
+        <Grid item xs={12} sm={12} md={md}>   
              
              <Autocomplete
                 freeSolo
                 id="list"
                 size='small'
-                disabled = {props.disabled}
+                onBlur={onBlur} 
+                disabled = {disabled}
                 onChange={(event, value)=>{
-                   props.setFieldValue(props.name, data.find(element => element.name === value));  
+                   setFieldValue(name, data.find(element => element.name === value));  
                 }}
                 onInputChange={(event)=>{handleAPIrequest(event.target.value);}}
                 options={data.map((option)=> option.name)}
                 renderInput={(params) => 
-                <TextField error={props.haserror} helperText={props.errorText} color="success" 
-                name={props.name} {...params} onBlur={props.onBlur} label={props.label} 
+                <TextField 
+                {...params}
+                color="success"     
+                error={haserror} 
+                helperText={errorText} 
+                name={name} 
+                label={label} 
                     />}
                 />  
                

@@ -28,7 +28,7 @@ const AutocompleteInput = ({setAdress}) =>{
     });
 
     useEffect(()=>(
-     console.log(values)
+     setAdress(values)
     ),[values]);
 
    const handleAPIrequest = async (path, query_param) => {

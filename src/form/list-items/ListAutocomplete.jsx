@@ -2,7 +2,7 @@ import {React, useState} from 'react';
 import { Autocomplete, Grid, TextField } from '@mui/material';
 
 
-const ListAutocomplete = ({md, handleValues}) =>{
+const ListAutocomplete = ({md, name, error, errorText, handleBlur, handleValues, setFieldValue}) =>{
 
     const[data, setData] = useState([])
 
@@ -20,6 +20,7 @@ const ListAutocomplete = ({md, handleValues}) =>{
 
     const handleFetch = (value) => {
       const item = data.find((element) => value === element.name);
+      setFieldValue(name, item);
       handleValues(item);
     }
 
@@ -32,14 +33,19 @@ const ListAutocomplete = ({md, handleValues}) =>{
           options = {data.map((option)=> option.name )}
           size='small'
           fullWidth
+          onBlur = {handleBlur}
           onInputChange={(event, inputValue) => handleAPIrequest(inputValue)}
           onChange = {(event, value)=>handleFetch(value)}
           renderInput = {
-              (params) => <TextField {...params}
-                           label='Codigo de producto' 
-                           
-                           />
-          }
+              (params) => 
+              <TextField 
+              {...params}  
+              color = 'success'           
+              label='Codigo de producto' 
+              name = {name}
+              error = {error} 
+              helperText = {errorText}   
+              />}
           />    
      </Grid>
     );
