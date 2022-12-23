@@ -20,42 +20,59 @@ const ListItemProducto =
     const [um, setUM] = useState('');
     const [valor_u, setValor_u] = useState('');
 
-    const handleNewvalues = () =>{
-
-
+    const handleTotal = () =>{
+        if(typeof values.producto !== 'undefined' && values.producto !== ''){
+            if(Boolean(errors.cantidad))
+            {   
+                setFieldValue('total', '')
+            }
+            else{
+                const total = (values.producto.precio_u * values.cantidad)
+                setFieldValue('total', total)
+            }
+        }
+        else{
+            setFieldValue('total', '')
+        }
+       
     }
 
     const {touched, values, errors, handleBlur, handleChange, setFieldValue} = useFormik({
         initialValues: {
            producto : '',
            cantidad :'',
-           iva : '',
-           descuento : '',
-           total : '' 
+           iva : 0.00,
+           descuento : 0.00,
+           total : 0.00 
         },
         validationSchema : Yup.object({
             producto : Yup.object().required('Campo requerido'),
-            cantidad : Yup.number().typeError('Debe ser un numero').required('Campo requerido'),
+            cantidad : Yup.number().typeError('Debe ser un numero')
+                       .required('Campo requerido')
+                       .moreThan(0, 'Debe ser mayor a 0'),
             iva : Yup.number().typeError('Debe ser un numero').optional(),
             descuento : Yup.number().typeError('Debe ser un numero').optional()
         })
     });
 
+    useEffect(()=>(
+        handleTotal()
+    ),[values.producto,values.cantidad, errors.cantidad])
+
+ 
     const Click = () =>{
         console.log(values);
     }
 
     const handleValues = (item) =>{
         if(typeof(item) !== 'undefined')
-        {   console.log(productos);
-            setDescription(item.descripcion);
+        {   setDescription(item.descripcion);
             setUM(item.um);
             setValor_u(item.precio_u);
             const impuesto = {'impuesto':'12'}
             list = productos;
             list = [...list, { 'Producto' : values}]
             setProductos(list);
-            console.log(productos);
         }else{
             list = productos;
             list.splice((index-1), 1)
@@ -140,6 +157,7 @@ const ListItemProducto =
                      md = {2}
                      label = 'Total'
                      disabled={true}
+                     value = {values.total}
                      />
 
                      <Grid item xs={12} sm={12} md={6}>
@@ -148,6 +166,7 @@ const ListItemProducto =
                          handleDeleteItems = {handleDeleteItems}
                         />
                      </Grid>
+
                   </Grid>
                     <Button onClick = {Click}>
                         log
